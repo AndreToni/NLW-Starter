@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt_br"> <!-- Idioma da pagina -->
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Para a page caber em telas de diversos tamanhos -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+{% extends "layout.html" %}
 
-        <title>Create-Point</title>
+{% set pageId = "page-create-point" %}
 
-        <link rel="stylesheet" href="/styles/main.css">
-        <link rel="stylesheet" href="/styles/create-point.css">
+{% block title %}
+    <title>Criar um ponto de coleta</title>
+{% endblock title %}
 
-        <link rel="stylesheet" href="/styles/responsive.css">
-    </head>
-    <body>
-        <div id ="page-create-point">
+{% block styles %}
+    <link rel="stylesheet" href="/styles/create-point.css">
+{% endblock styles %}
+
+{% block content %}
             <header>
                 <img src="/assets/logo.svg" alt="Logomarca"/>
-                <a href="index.html"> 
+                <a href="/"> 
                     <span></span>
                     voltar para Home
                 </a>
@@ -28,31 +25,39 @@
                     <legend>
                         <h2>Dados da entidade</h2>
                     </legend>
-                    <div class="field">
-                        <label for="">Nome da entidade</label>
-                        <input type="text" name="name" required/>
+
+                    <div class="field-group">
+                        <div class="field">
+                            <label for="">Nome da entidade</label>
+                            <input type="text" name="name" required="required"/>
+                        </div>
+                        <div class="field">
+                            <label for="">Imagem da entidade</label>
+                            <input type="url" name="image" placeholder="http://" required ="required"/>
+                        </div>
                     </div>
+                    
                     <div class="field-group">
                         <div class="field">
                             <label form="address">Endereço</label>
-                            <input type="text" name="address"required/>
+                            <input type="text" name="address"required="required"/>
                         </div>
                         <div class="field">
                             <label form="address2">Número/Complemento</label>
-                            <input type="text" name="address2" required/>
+                            <input type="text" name="address2" required="required"/>
                         </div>
                     </div>
                     <div class="field-group">
                         <div class="field">
                             <label form="state">Estado</label>
-                            <select name="uf" required>
+                            <select name="uf" required="required">
                                 <option value="" >Selecione o Estado</option>
                             </select>
                             <input type="hidden" name="state">
                         </div>
                         <div class="field">
                             <label form="city">Cidade</label>
-                            <select name="city" disabled required>
+                            <select name="city" disabled required="required">
                                 <option value="" >Selecione a Cidade</option>
                             </select>
                         </div>
@@ -61,7 +66,8 @@
                 </fieldset>
                 <fieldset>
                     <legend>
-                        <h2>Ítens de coleta</h2>
+                        <h2>Itens de coleta</h2>
+                        <span>Selecione um ou mais itens abaixo</span>
                     </legend>
                     <div class="items-grid">
                         <li data-id="1" >
@@ -94,8 +100,8 @@
                 </fieldset>
                 <button type="submit">Cadastra ponto de coleta</button>
             </form>
+{% endblock content %}
 
-        </div>
-        <script src="/scripts/create-point.js"></script>
-    </body>
-</html>
+{% block scripts %}
+    <script src="/scripts/create-point.js"></script>
+{% endblock scripts %}
